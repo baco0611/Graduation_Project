@@ -27,6 +27,8 @@ Sign_digit
 |_ dataset
 |   |_ images //Nơi lưu dataset gốc, ta sẽ không chỉnh sửa hay thao tác với dữ liệu ở folder này
 |_ load_data //Nơi chứa các file
+|_ SIFT 
+|_ VGG8
 ```
 
 ### Load dữ liệu
@@ -35,12 +37,22 @@ Sign_digit
     
     Tạo folder data bên trong folder dataset với path ```dataset/data``` để chứa các dữ liệu được nén lại. Đây sẽ là các dữ liệu có thể tái sử dụng mà không cần phải duyệt lại toàn bộ dataset.
 
-    Để thực hiện việc load dữ liệu, trỏ vào folder ```dataset/image``` và chạy lệnh dưới:
-
-    ```python
-        py loading_data.py
-    ```
+    Để thực hiện việc load dữ liệu, trỏ vào folder ```dataset/image``` và chạy file "load_data.py" để load dữ liệu và nén dữ liệu.
 
     Sau khi chạy, các folder chứa biến thể sẽ được tạo ra bên trong folder dataset. Ngoài ta, bên trong folder data cũng có các file joblib chứa dữ liệu biến thể. Trong đó, file process chứa toàn bộ dữ liệu tổng hợp, dùng cho quá trình training mà không cần phải nối các biến thể lại. Các file biến thể có thể dùng để huấn luyện độc lập, hoặc dùng trong việc kiếm thử.
 
     Khởi chạy file ```testing_data.py``` nếu muốn kiếm tra xem quá trình chạy có lỗi gì không. Quá trình không lỗi là khi dữ liệu được nối vào file process đúng và tất cả giá trị đều trả về bằng 0.
+
+### Khảo sát phương pháp trích xuất đặc trưng SIFT + BoVW
+
+    Đầu tiên, tạo folder ```SIFT/data``` để chứa tất cả các file là dữ liệu và mô hình được nén lại cho việc tái sử dụng dữ liệu. Trong đó, tạo 2 folder con là ```SIFT/data/model``` và ```SIFT/data/dataset``` theo cấu trúc bên dưới:
+
+    ```bash
+    SIFT
+    |_ data
+    |   |_ dataset //chứa dữ liệu đặc trưng
+    |   |_ model // chứa các model
+    
+    ```
+
+    Đầu tiên, ta thực hiện bước trích xuất đặc trưng SIFT từ các dữ liệu hình ảnh đã được chuẩn bị ở bước load dữ liệu. Ta chạy chương trình tại file ```extracting_feature.py``` để trích xuất đặc trưng SIFT.
