@@ -1,6 +1,6 @@
 data_num = 5
-date = "20240520"
-num_of_epoch = 20
+date = "20240520_1"
+num_of_epoch = 30
 
 if data_num == 0:
     name = "raw"

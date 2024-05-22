@@ -82,9 +82,13 @@ Sign_digit
 - Tương tự với khi khảo sát SIFT, ta cũng cần tạo các folder để lưu dữ liệu với cấu trúc:
     ```bash
     VGG8
-    |_ model
-    |_ image
-    |_ ...
+    |_ function
+    |   |_ Processing_function.py // Chứa các hàm dùng chung
+    |   |_ config.py // Chứa các tham số điều chỉnh
+    |_ VGG8
+        |_ model
+        |_ image
+        |_ ...
     ```
 
 - Điều chỉnh các thông tin trong file ``config.py` với các thông số:

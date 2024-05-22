@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-from config import *
+from VGG8.function.config import *
 from VGG8.function.Processing_function import resize_list_image
 import joblib
 import numpy as np

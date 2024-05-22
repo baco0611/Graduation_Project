@@ -3,7 +3,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from VGG8.function.Processing_function import resize_list_image
-from config import *
+from VGG8.function.config import *
 import os
 import joblib
 import numpy as np
@@ -39,7 +39,7 @@ if data_num == 5:
     labels = labels * 5
 labels = to_categorical(labels, num_classes=len(set(labels)))
 print(len(data), len(labels))
-batch_size = 32
+batch_size = 1000
 
 # Tạo thư mục tạm để lưu các batch
 temp_dir = "./temp_batches"
