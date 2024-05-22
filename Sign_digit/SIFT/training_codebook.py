@@ -1,15 +1,13 @@
 from function.bovw import *
 import joblib
 import time
+from config import *
 
 # Start time counting
 start_time = time.time()
 
 
 print("Loading data ...")
-size = 200
-name = "process"
-date = "20240516"
 description = joblib.load(f'./data/dataset/{name}_description.joblib')
 print(len(description))
 all_descriptor = description
