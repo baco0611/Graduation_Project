@@ -75,7 +75,7 @@ Sign_digit
 
 - Để huấn luyện mô hình phân loại hình ảnh, vui lòng chạy file ```training_model.py```. Để lựa chọn mô hình codebook, hãy thay đổi các giá trị trong file ```config.py```. Ngoài ra, giá trị ``date_svm` cũng cần được thay đổi với ý nghĩa và cú pháp tương tự.
 
-- Cuối cùng, để thực hiện việc kiếm thử mô hình với các tiêu chí hình ảnh bị biến đổi, chạy file ``validation.py`
+- Cuối cùng, để thực hiện việc kiếm thử mô hình với các tiêu chí hình ảnh bị biến đổi, chạy file ```validation.py```
 
 ### Khảo sát mô hình VGG8
 
@@ -91,13 +91,52 @@ Sign_digit
         |_ ...
     ```
 
-- Điều chỉnh các thông tin trong file ``config.py` với các thông số:
+- Điều chỉnh các thông tin trong file ```config.py``` với các thông số:
     - data_num: số thứ tự dataset muốn dùng (0: ảnh gốc, 1: ảnh âm, 2: ảnh méo, 3: ảnh xoay, 4: ảnh lật, 5: toàn bộ các dữ liệu trước)
     - date: quy ước và ý nghĩa như SIFT
     - num_of_epoch: số epoch muốn thực hiện
 
-- Chạy file ``training_model.py` để thực hiện quá trình huấn luyện mô hình VGG8.
+- Chạy file ```training_model.py``` để thực hiện quá trình huấn luyện mô hình VGG8.
 
-- Chạy file ``training_valid.py` để kiếm tra độ chính xác của mô hình trên toàn bộ tập dữ liệu sử dụng (training set + valid set). Vì mô hình VGG8 có số lượng neural và dữ liệu của bộ dữ liệu môn ngữ kí hiệu số khá lớn, nên tránh việc tràn bộ nhớ, tôi đã tách riêng việc kiếm thử trên toàn bộ tập dữ liệu thành một chương trình riêng.
+- Chạy file ```training_valid.py``` để kiếm tra độ chính xác của mô hình trên toàn bộ tập dữ liệu sử dụng (training set + valid set). Vì mô hình VGG8 có số lượng neural và dữ liệu của bộ dữ liệu môn ngữ kí hiệu số khá lớn, nên tránh việc tràn bộ nhớ, tôi đã tách riêng việc kiếm thử trên toàn bộ tập dữ liệu thành một chương trình riêng.
 
 - **Lưu ý:** Vì cấu hình của mỗi máy là khác nhau, vì thế hãy điều chỉnh cách biến batch_size cho hợp lý với cấu hình của máy tránh việc tràn bộ nhớ trong quá hình huấn luyện và kiếm thử.
+
+- Cuối cùng, hãy chạy file ``validation.py` để tiến hành kiểm thử và đánh giá trên các tiêu chí.
+
+### Khảo sát mô hình SVM được huấn luyện bởi các vector đặc trưng được trích xuất từ VGG8
+
+- Đầu tiên, tạo các folder để lưu dữ liệu với cấu trúc bên dưới:
+
+    ```bash
+    VGG8
+    |_ function
+    |_ VGG8
+    |_ VGG8_SVM
+        |_ data
+        |   |_ dataset
+        |   |_ model
+        |_ image
+
+    ```
+
+- Ở phần này, ta sẽ dùng các vector được trích xuất ở các lớp fully connected layer của mạng VGG8 để làm vector đặc trưng của hình ảnh (cấu trúc như bên dưới). Để trích xuất đặc trưng của hình ảnh, chạy file ```exctract_feature.py```. ***Hãy nhớ chỉnh tham số ở file ```config.py``` để chọn đúng mô hình mong muốn*** 
+
+    ```bash
+        0 conv2d (None, 224, 224, 16)
+        1 max_pooling2d (None, 112, 112, 16)
+        2 conv2d_1 (None, 112, 112, 32)
+        3 max_pooling2d_1 (None, 56, 56, 32)
+        4 conv2d_2 (None, 56, 56, 64)
+        5 max_pooling2d_2 (None, 28, 28, 64)
+        6 conv2d_3 (None, 28, 28, 128)
+        7 max_pooling2d_3 (None, 14, 14, 128)
+        8 conv2d_4 (None, 14, 14, 128)
+        9 max_pooling2d_4 (None, 7, 7, 128)
+        10 flatten (None, 6272)
+        11 dense (None, 4096)
+        12 dropout (None, 4096)
+        13 dense_1 (None, 1024)
+        14 dropout_1 (None, 1024)
+        15 dense_2 (None, 10)
+    ```
