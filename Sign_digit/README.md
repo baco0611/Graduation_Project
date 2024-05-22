@@ -33,26 +33,57 @@ Sign_digit
 
 ### Load dữ liệu
 
-    Đầu tiên, ta cần chuẩn bị dữ liệu để có thể thực hiện quá trình khảo sát. Dataset gốc được lưu trữ tại folder ```dataset/image```, cần phải load data để tiền xử lý, tạo biến thể ảnh và nén file lại để tái sử dụng mà không cần phải duyệt toàn bộ ảnh nữa. 
+- Đầu tiên, ta cần chuẩn bị dữ liệu để có thể thực hiện quá trình khảo sát. Dataset gốc được lưu trữ tại folder ```dataset/image```, cần phải load data để tiền xử lý, tạo biến thể ảnh và nén file lại để tái sử dụng mà không cần phải duyệt toàn bộ ảnh nữa. 
     
-    Tạo folder data bên trong folder dataset với path ```dataset/data``` để chứa các dữ liệu được nén lại. Đây sẽ là các dữ liệu có thể tái sử dụng mà không cần phải duyệt lại toàn bộ dataset.
+- Tạo folder data bên trong folder dataset với path ```dataset/data``` để chứa các dữ liệu được nén lại. Đây sẽ là các dữ liệu có thể tái sử dụng mà không cần phải duyệt lại toàn bộ dataset.
 
-    Để thực hiện việc load dữ liệu, trỏ vào folder ```dataset/image``` và chạy file "load_data.py" để load dữ liệu và nén dữ liệu.
+- Để thực hiện việc load dữ liệu, trỏ vào folder ```dataset/image``` và chạy file "load_data.py" để load dữ liệu và nén dữ liệu.
 
-    Sau khi chạy, các folder chứa biến thể sẽ được tạo ra bên trong folder dataset. Ngoài ta, bên trong folder data cũng có các file joblib chứa dữ liệu biến thể. Trong đó, file process chứa toàn bộ dữ liệu tổng hợp, dùng cho quá trình training mà không cần phải nối các biến thể lại. Các file biến thể có thể dùng để huấn luyện độc lập, hoặc dùng trong việc kiếm thử.
+- Sau khi chạy, các folder chứa biến thể sẽ được tạo ra bên trong folder dataset. Ngoài ta, bên trong folder data cũng có các file joblib chứa dữ liệu biến thể. Trong đó, file process chứa toàn bộ dữ liệu tổng hợp, dùng cho quá trình training mà không cần phải nối các biến thể lại. Các file biến thể có thể dùng để huấn luyện độc lập, hoặc dùng trong việc kiếm thử.
 
-    Khởi chạy file ```testing_data.py``` nếu muốn kiếm tra xem quá trình chạy có lỗi gì không. Quá trình không lỗi là khi dữ liệu được nối vào file process đúng và tất cả giá trị đều trả về bằng 0.
+- Khởi chạy file ```testing_data.py``` nếu muốn kiếm tra xem quá trình chạy có lỗi gì không. Quá trình không lỗi là khi dữ liệu được nối vào file process đúng và tất cả giá trị đều trả về bằng 0.
 
 ### Khảo sát phương pháp trích xuất đặc trưng SIFT + BoVW
 
-    Đầu tiên, tạo folder ```SIFT/data``` để chứa tất cả các file là dữ liệu và mô hình được nén lại cho việc tái sử dụng dữ liệu. Trong đó, tạo 2 folder con là ```SIFT/data/model``` và ```SIFT/data/dataset``` theo cấu trúc bên dưới:
+- Đầu tiên, tạo folder ```SIFT/data``` để chứa tất cả các file là dữ liệu và mô hình được nén lại cho việc tái sử dụng dữ liệu, folder ```SIFT/image``` để chứa các file ảnh là confusion matrix được tạo ra trong quá trình khảo sát. Trong đó, tạo 2 folder con là ```SIFT/data/model``` và ```SIFT/data/dataset``` theo cấu trúc bên dưới:
 
     ```bash
     SIFT
     |_ data
     |   |_ dataset //chứa dữ liệu đặc trưng
     |   |_ model // chứa các model
+    |_ function
+    |_ image
+    |_ ...
     
     ```
 
-    Đầu tiên, ta thực hiện bước trích xuất đặc trưng SIFT từ các dữ liệu hình ảnh đã được chuẩn bị ở bước load dữ liệu. Ta chạy chương trình tại file ```extracting_feature.py``` để trích xuất đặc trưng SIFT.
+- Ta thực hiện bước trích xuất đặc trưng SIFT từ các dữ liệu hình ảnh đã được chuẩn bị ở bước load dữ liệu. Ta chạy chương trình tại file ```extracting_feature.py``` để trích xuất đặc trưng SIFT.
+
+- Tiếp đến, chạy file ```training_codebook.py``` để tạo ra từ điển codebook với mô hình phân cụm K-means - đây chính là ý tưởng về mô hình BoVW (Bags of Visual Word). 
+
+- Các tham số được điều chỉnh trong file config. Trong đó:
+    - size: kích thước từ điển muốn huấn luyện
+    - name: tập dữ liệu muốn sử dụng (raw: ảnh gốc, negative: ảnh âm, resized, ảnh méo, rotated: ảnh xoay, flipped: ảnh lật, process: toàn bộ các dữ liệu trước)
+    - date: để tránh việc ghi đè các mô hình với nhau khi huấn luyện, vui lòng điền ngày tháng theo định dạng "yyyymmdd". Nếu trong một ngày, huấn luyện nhiều mô hình thì thêm hậu tố số thứ tự theo định dạng "yyyymmdd_n.
+    - Ví dụ với size 200, dataset process, training model thứ 2 ngày 20240520 thì điều chỉnh giá trị như bên dưới:
+    ```python
+        size = 200
+        name = "process"
+        date = "20240520_2"
+    ```
+
+- Để huấn luyện mô hình phân loại hình ảnh, vui lòng chạy file ```training_model.py```. Để lựa chọn mô hình codebook, hãy thay đổi các giá trị trong file ```config.py```. Ngoài ra, giá trị ``date_svm` cũng cần được thay đổi với ý nghĩa và cú pháp tương tự.
+
+- Cuối cùng, để thực hiện việc kiếm thử mô hình với các tiêu chí hình ảnh bị biến đổi, chạy file ``validation.py`
+
+### Khảo sát mô hình VGG8
+
+- Tương tự với khi khảo sát SIFT, ta cũng cần tạo các folder để lưu dữ liệu với cấu trúc:
+    ```bash
+    VGG8
+    |_ model
+    |_ image
+    |_ ...
+    
+    ```
