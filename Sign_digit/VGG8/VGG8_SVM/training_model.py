@@ -42,7 +42,7 @@ def evaluate_and_confusion_matrix(model, test_x, test_y, model_name):
     accuracy = accuracy_score(test_y, test_predictions)
     print("Test Accuracy:", accuracy)
     
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(15, 12))
     sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", annot_kws={"size": 20})
     plt.xlabel('Predicted labels', fontsize="14")
     plt.ylabel('True labels', fontsize="14")
@@ -98,7 +98,7 @@ conf_matrix = confusion_matrix(all_labels, predictions)
 accuracy = accuracy_score(all_labels, predictions)
 print("Model Accuracy:", accuracy)
     
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(15, 12))
 sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", annot_kws={"size": 20})
 plt.xlabel('Predicted labels', fontsize="14")
 plt.ylabel('True labels', fontsize="14")
