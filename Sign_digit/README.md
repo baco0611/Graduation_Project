@@ -64,7 +64,7 @@ Sign_digit
 
 - Các tham số được điều chỉnh trong file config. Trong đó:
     - size: kích thước từ điển muốn huấn luyện
-    - name: tập dữ liệu muốn sử dụng (raw: ảnh gốc, negative: ảnh âm, resized, ảnh méo, rotated: ảnh xoay, flipped: ảnh lật, process: toàn bộ các dữ liệu trước)
+    - name: tập dữ liệu muốn sử dụng (raw: ảnh gốc, negative: ảnh âm, resized: ảnh méo, rotated: ảnh xoay, flipped: ảnh lật, process: toàn bộ các dữ liệu trước)
     - date: để tránh việc ghi đè các mô hình với nhau khi huấn luyện, vui lòng điền ngày tháng theo định dạng "yyyymmdd". Nếu trong một ngày, huấn luyện nhiều mô hình thì thêm hậu tố số thứ tự theo định dạng "yyyymmdd_n.
     - Ví dụ với size 200, dataset process, training model thứ 2 ngày 20240520 thì điều chỉnh giá trị như bên dưới:
     ```python
@@ -85,5 +85,15 @@ Sign_digit
     |_ model
     |_ image
     |_ ...
-    
     ```
+
+- Điều chỉnh các thông tin trong file ``config.py` với các thông số:
+    - data_num: số thứ tự dataset muốn dùng (0: ảnh gốc, 1: ảnh âm, 2: ảnh méo, 3: ảnh xoay, 4: ảnh lật, 5: toàn bộ các dữ liệu trước)
+    - date: quy ước và ý nghĩa như SIFT
+    - num_of_epoch: số epoch muốn thực hiện
+
+- Chạy file ``training_model.py` để thực hiện quá trình huấn luyện mô hình VGG8.
+
+- Chạy file ``training_valid.py` để kiếm tra độ chính xác của mô hình trên toàn bộ tập dữ liệu sử dụng (training set + valid set). Vì mô hình VGG8 có số lượng neural và dữ liệu của bộ dữ liệu môn ngữ kí hiệu số khá lớn, nên tránh việc tràn bộ nhớ, tôi đã tách riêng việc kiếm thử trên toàn bộ tập dữ liệu thành một chương trình riêng.
+
+- **Lưu ý:** Vì cấu hình của mỗi máy là khác nhau, vì thế hãy điều chỉnh cách biến batch_size cho hợp lý với cấu hình của máy tránh việc tràn bộ nhớ trong quá hình huấn luyện và kiếm thử.
