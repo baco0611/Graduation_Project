@@ -149,7 +149,7 @@ Sign_digit
         15 dense_2 (None, n) //n là số units ứng với số lớp của bộ dữ liệu
     ```
 
-*Lưu ý:* Mỗi lần training thì nên chỉnh sửa các thông số ở file ```function/config.py``` để đảm bảo đúng mô hình VGG8 dùng để trích xuất và lặp lại quá trình trích xuất đặc trưng.
+**Lưu ý:** Mỗi lần training thì nên chỉnh sửa các thông số ở file ```function/config.py``` để đảm bảo đúng mô hình VGG8 dùng để trích xuất và lặp lại quá trình trích xuất đặc trưng.
 
 - Sau khi đã trích xuất đặc trưng từ mạng VGG8, tiếp tục huấn luyện mô hình SVM sử dụng các vector đặc trưng đó. Trước hết, cần chỉnh lại các tham số trong file ```VGG8_SVM_config.py```, các thông số cụ thể như sau:
     - feature_dims: số chiều dữ liệu cần trích xuất (4096 hoặc 1024)
@@ -159,3 +159,8 @@ Sign_digit
 - Sau đó, chạy file ```training_model.py``` để tiến hành huấn luyện mô hình SVM.
 
 - Sau khi đã huấn luyện mô hình xong thì đánh giá mô hình với các tiêu chí bằng cách chạy file ```validation.py```
+
+### Khảo sát mô hình SVM được huấn luyện bởi các vector đặc trưng từ VGG8 được giảm chiều bằng mô hình PCA (VGG8_PCA_SVM)
+
+
+
