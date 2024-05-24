@@ -14,32 +14,32 @@ def test_data(cnn_dims, feature_dims):
     print(type(raw_description[0]))
 
     diff = 0
-    for i in range(15000):
+    for i in range(3000):
         if not (np.array_equal(raw_description[i], process_description[i])):
             diff += 1
     print("Error between raw and process:", diff)
 
     diff = 0
-    for i in range(15000):
-        if not (np.array_equal(negative_description[i], process_description[i + 15000])):
+    for i in range(3000):
+        if not (np.array_equal(negative_description[i], process_description[i + 3000])):
             diff += 1
     print("Error between neg and process:", diff)
 
     diff = 0
-    for i in range(15000):
-        if not (np.array_equal(resized_description[i], process_description[i + 15000 * 2])):
+    for i in range(3000):
+        if not (np.array_equal(resized_description[i], process_description[i + 3000 * 2])):
             diff += 1
     print("Error between rez and process:", diff)
 
     diff = 0
-    for i in range(15000):
-        if not (np.array_equal(rotated_description[i], process_description[i + 15000 * 3])):
+    for i in range(3000):
+        if not (np.array_equal(rotated_description[i], process_description[i + 3000 * 3])):
             diff += 1
     print("Error between rot and process:", diff)
 
     diff = 0
-    for i in range(15000):
-        if not (np.array_equal(flipped_description[i], process_description[i + 15000 * 4])):
+    for i in range(3000):
+        if not (np.array_equal(flipped_description[i], process_description[i + 3000 * 4])):
             diff += 1
     print("Error between flip and process:", diff)
 

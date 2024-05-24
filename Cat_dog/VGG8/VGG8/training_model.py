@@ -17,6 +17,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import tensorflow as tf
 import gc
+from keras.callbacks import LearningRateScheduler
 
 # Hàm tải dữ liệu
 def load_data_from_folder(folder_path):
@@ -130,11 +131,19 @@ def evaluate_and_confusion_matrix(model, test_x, test_y, model_name):
     gc.collect()
     tf.keras.backend.clear_session()
 
+def scheduler(epoch, lr):
+    if epoch < 10:
+        return lr
+    else:
+        return lr * tf.math.exp(-0.1)
+
 def train_and_save_model(train_x, train_y, test_x, test_y, model_name, epochs=30, unit = 2):
     model = build_vgg11_model(num_classes=unit)
-    model.compile(loss='categorical_crossentropy', optimizer=Adam(), metrics=["accuracy"])
+    model.compile(loss='categorical_crossentropy', optimizer=Adam(learning_rate=0.0002), metrics=["accuracy"])
 
     print(f"Training {model_name} model ...")
+
+    callback = LearningRateScheduler(scheduler)
 
     history = model.fit(train_x, train_y, batch_size=8, epochs=epochs)
     
@@ -163,6 +172,7 @@ if data_num == 5:
 size = len(set(labels))
 
 train_x, test_x, train_y, test_y = process_data(data, labels, size)
+# train_x, test_x = train_x / 255.0, test_x / 255.0
 print(len(train_x), len(test_x))
 print(len(train_y), len(test_y))
 print(type(train_x), type(test_x))

@@ -16,31 +16,31 @@ print("Length of flipped", len(flipped_image))
 print("Length of process", len(process_image))
 
 diff = 0
-for i in range(15000):
+for i in range(3000):
     if not (np.array_equal(raw_image[i], process_image[i])):
         diff += 1
 print("Error between raw and process:", diff)
 
 diff = 0
-for i in range(15000):
-    if not (np.array_equal(negative_image[i], process_image[i + 15000])):
+for i in range(3000):
+    if not (np.array_equal(negative_image[i], process_image[i + 3000])):
         diff += 1
 print("Error between neg and process:", diff)
 
 diff = 0
-for i in range(15000):
-    if not (np.array_equal(resized_image[i], process_image[i + 15000 * 2])):
+for i in range(3000):
+    if not (np.array_equal(resized_image[i], process_image[i + 3000 * 2])):
         diff += 1
 print("Error between rez and process:", diff)
 
 diff = 0
-for i in range(15000):
-    if not (np.array_equal(rotated_image[i], process_image[i + 15000 * 3])):
+for i in range(3000):
+    if not (np.array_equal(rotated_image[i], process_image[i + 3000 * 3])):
         diff += 1
 print("Error between rot and process:", diff)
 
 diff = 0
-for i in range(15000):
-    if not (np.array_equal(flipped_image[i], process_image[i + 15000 * 4])):
+for i in range(3000):
+    if not (np.array_equal(flipped_image[i], process_image[i + 3000 * 4])):
         diff += 1
 print("Error between flip and process:", diff)
