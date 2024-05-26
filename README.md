@@ -9,20 +9,32 @@ Mục tiêu chính của dự án không chỉ dừng lại ở việc nắm v�
 
 ## Giới thiệu về dataset
 
+### Dataset chó mèo
+Tập dữ liệu chó mèo được sử dụng trong khóa luận này được lấy từ cuộc thi "Dogs vs. Cats Redux: Kernels Edition" trên Kaggle. Tập dữ liệu này bao gồm hàng ngàn hình ảnh của chó và mèo, được gắn nhãn rõ ràng, giúp cho việc phân loại hình ảnh trở nên dễ dàng và trực quan hơn. Các hình ảnh trong dataset này có đặc điểm như sau:
+- Đa dạng chủng loại: Các hình ảnh trong tập dữ liệu bao gồm nhiều giống chó và mèo khác nhau, từ các giống phổ biến đến các giống hiếm gặp.
+
+- Kích thước khác nhau: Hình ảnh trong tập dữ liệu được chụp với nhiều kích thước và tỷ lệ khác nhau như ngang, dọc, vuông, ...
+
+- Nền đa dạng: Hình ảnh trong tập dữ liệu có nền phong phú, từ các bối cảnh trong nhà như phòng khách, phòng ngủ đến các bối cảnh ngoài trời như công viên, sân vườn.
+
+- Độ rõ nét khác nhau: Hình ảnh trong tập dữ liệu có độ rõ nét khác nhau, từ những bức ảnh chất lượng cao, sắc nét đến những bức ảnh mờ nhưng vẫn có thể thấy được các chi tiết của vật thể.
+
+- Tư thế và hoạt động khác nhau: Hình ảnh mô tả các con vật trong nhiều tư thế và hoạt động khác nhau như đang nằm, đứng, chạy, nhảy, hoặc chơi đùa.
+
 ### Dataset ngôn ngữ kí hiệu số
-Đây là bộ dữ liệu do người dùng Muhammad Khalid chia sẻ trên nền tảng Kaggle các hình ảnh về ngôn ngữ ký hiệu - ngôn ngữ hình thể dành cho người khiếm thính, cụ thể là các ký hiệu tay đại diện cho các con số từ 0 đến 9 (hình ![dataset_ex_num](figs:dataset_ex_num)). Tập dữ liệu được thiết kế với mục tiêu chính là phát triển các mô hình nhận diện ngôn ngữ ký hiệu số, một ứng dụng quan trọng trong việc hỗ trợ giao tiếp cho người khiếm thính và câm. Điều này không chỉ giúp tăng cường khả năng giao tiếp cho người bị khiếm khuyết các chức năng của cơ thể mà còn mở ra nhiều ứng dụng tiềm năng trong các lĩnh vực khác như giáo dục, dịch vụ khách hàng và hệ thống tự động hóa.
+Đây là bộ dữ liệu do người dùng Muhammad Khalid chia sẻ trên nền tảng Kaggle các hình ảnh về ngôn ngữ ký hiệu - ngôn ngữ hình thể dành cho người khiếm thính, cụ thể là các ký hiệu tay đại diện cho các con số từ 0 đến 9. Tập dữ liệu được thiết kế với mục tiêu chính là phát triển các mô hình nhận diện ngôn ngữ ký hiệu số, một ứng dụng quan trọng trong việc hỗ trợ giao tiếp cho người khiếm thính và câm. Điều này không chỉ giúp tăng cường khả năng giao tiếp cho người bị khiếm khuyết các chức năng của cơ thể mà còn mở ra nhiều ứng dụng tiềm năng trong các lĩnh vực khác như giáo dục, dịch vụ khách hàng và hệ thống tự động hóa.
 
 Đặc điểm của bộ dữ liệu:
 
-- **Số lượng hình ảnh**: Tập dữ liệu bao gồm 15.000 hình ảnh, đại diện cho các ký hiệu tay của 10 con số từ 0 đến 9. 
+- Số lượng hình ảnh: Tập dữ liệu bao gồm 15.000 hình ảnh, đại diện cho các ký hiệu tay của 10 con số từ 0 đến 9. 
 
-- **Độ phân giải**: Các hình ảnh trong tập dữ liệu có độ phân giải ổn định trong khoảng từ 75px * 100px đến 100px * 100px, đảm bảo rằng các chi tiết nhỏ trên tay có thể được nhận diện rõ ràng.
+- Độ phân giải: Các hình ảnh trong tập dữ liệu có độ phân giải ổn định trong khoảng từ 75px * 100px đến 100px * 100px, đảm bảo rằng các chi tiết nhỏ trên tay có thể được nhận diện rõ ràng.
 
-- **Đa dạng về người thực hiện ký hiệu**: Các hình ảnh được chụp từ nhiều người khác nhau, tạo ra sự đa dạng trong cách thực hiện các ký hiệu tay.
+- Đa dạng về người thực hiện ký hiệu: Các hình ảnh được chụp từ nhiều người khác nhau, tạo ra sự đa dạng trong cách thực hiện các ký hiệu tay.
 
-- **Điều kiện ánh sáng và môi trường**: Hình ảnh được chụp trong các điều kiện ánh sáng và môi trường khác nhau, giúp mô hình có khả năng nhận diện ký hiệu trong các tình huống thực tế đa dạng.
+- Điều kiện ánh sáng và môi trường: Hình ảnh được chụp trong các điều kiện ánh sáng và môi trường khác nhau, giúp mô hình có khả năng nhận diện ký hiệu trong các tình huống thực tế đa dạng.
 
-- **Ảnh đen trắng**: Các hình ảnh trong tập dữ liệu là ảnh đen trắng, điều này không ảnh hưởng đến tính thực tiễn của phương pháp trích xuất đặc trưng SIFT, vì SIFT không phụ thuộc vào màu sắc mà tập trung vào các đặc trưng không gian của hình ảnh. Tuy nhiên, đối với CNN, việc chỉ sử dụng ảnh đen trắng có thể gây ảnh hưởng, do CNN sử dụng chính giá trị pixel của ảnh để làm đầu vào. Mặc dù vậy, điều này không ảnh hưởng đến việc đánh giá và so sánh hai mô hình, vì mục tiêu là kiểm tra khả năng phân loại của chúng trên cùng một tập dữ liệu.
+- Ảnh đen trắng: Các hình ảnh trong tập dữ liệu là ảnh đen trắng, điều này không ảnh hưởng đến tính thực tiễn của phương pháp trích xuất đặc trưng SIFT, vì SIFT không phụ thuộc vào màu sắc mà tập trung vào các đặc trưng không gian của hình ảnh. Tuy nhiên, đối với CNN, việc chỉ sử dụng ảnh đen trắng có thể gây ảnh hưởng, do CNN sử dụng chính giá trị pixel của ảnh để làm đầu vào. Mặc dù vậy, điều này không ảnh hưởng đến việc đánh giá và so sánh hai mô hình, vì mục tiêu là kiểm tra khả năng phân loại của chúng trên cùng một tập dữ liệu.
 
 ## Khảo sát mô hình
 
@@ -161,6 +173,29 @@ Sign_digit
 - Sau khi đã huấn luyện mô hình xong thì đánh giá mô hình với các tiêu chí bằng cách chạy file ```validation.py```
 
 ### Khảo sát mô hình SVM được huấn luyện bởi các vector đặc trưng từ VGG8 được giảm chiều bằng mô hình PCA (VGG8_PCA_SVM)
+
+- Tương tự, ta tạo các folder để lưu trữ dữ liệu theo cấu trúc:
+
+    ```bash
+    VGG8
+    |_ function
+    |_ VGG8
+    |_ VGG8_SVM
+    |_ VGG8_PCA_SVM
+        |_ data
+        |   |_ dataset
+        |   |_ model
+        |_ image
+    ```
+
+- Tiếp đến, để sử dụng PCA giảm chiều dữ liệu và tạo ra vector đặc trưng mới, chạy file ```extracting_feature.py```. Trong quá trình này, việc giảm chiều sẽ được thực hiện trên cả dữ liệu 4096 chiệu và 1024 chiều và được giảm còn 200 chiều, 300 chiều, 400 chiều và 500 chiều.
+
+- Sau khi đặc giảm chiều dữ liệu xong, chạy file ```training_model.py``` để tiến hành huấn luyện mô hình SVM trên tập dữ liệu này. Các mô hình sẽ được huấn luyện tự động với các số chiều từ 200 đến 500 mà không cần thực hiện việc thay đổi chiều dữ liệu PCA. Nhưng vẫn cần điều chỉnh các tham số trong file ```PCA_SVM_config.py``` như sau:
+    - date: quy ước như các phần trên
+    - data_num: quy ước như các phần trên
+    - cnn_dims: số chiều của vector gốc. Đây là phần quan trọng nhất, vì mỗi lần chạy file, quá trình huấn luyện sẽ thực hiện 5 lần ứng với dữ liệu được trích xuất từ vector này (ví dụ như để cnn_dims là 4096 thì sẽ huấn luyện mô hình SVM với dữ liệu PCA có 200 đến 500 chiều được trích xuất từ vector đặc trưng có 4096 chiều, và tương tự với 1024).
+
+- Sau khi đã huấn luyện xong, chạy file ```validation.py``` để đánh giá mô hình trên nhiều tiêu chí. Tương tự với khi huấn luyện mô hình, quá trình kiếm thử diễn ra trên 5 tập dữ liệu có 200 đến 500 chiều được trích xuất từ tập dữ liệu có số chiều tương ứng với tham số cnn_dims.
 
 
 

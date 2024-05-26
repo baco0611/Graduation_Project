@@ -36,7 +36,7 @@ folders = [
 data = joblib.load(folders[data_num])
 labels = joblib.load("../.././dataset/data/label.joblib")
 if data_num == 5:
-    labels = labels * 5
+    labels = labels * 4
 labels = to_categorical(labels, num_classes=len(set(labels)))
 print(len(data), len(labels))
 batch_size = 1000

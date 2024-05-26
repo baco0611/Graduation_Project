@@ -38,9 +38,3 @@ for i in range(15000):
     if not (np.array_equal(rotated_image[i], process_image[i + 15000 * 3])):
         diff += 1
 print("Error between rot and process:", diff)
-
-diff = 0
-for i in range(15000):
-    if not (np.array_equal(flipped_image[i], process_image[i + 15000 * 4])):
-        diff += 1
-print("Error between flip and process:", diff)

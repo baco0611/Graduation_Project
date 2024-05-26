@@ -53,7 +53,7 @@ folders = [
 
 labels = joblib.load("../.././dataset/data/label.joblib")
 # if data_num == 5:
-#     labels = labels * 5
+#     labels = labels * 4
 size = len(set(labels))
 # labels = to_categorical(labels, num_classes=size)
 batch_size = 1000

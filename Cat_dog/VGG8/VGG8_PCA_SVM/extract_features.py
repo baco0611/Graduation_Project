@@ -54,6 +54,9 @@ def train_and_save_PCA(data_dims):
             result = model.transform(data)
             joblib.dump(result, f"./data/dataset/{PCA_dims}/{data_dims}_{name}")
 
+            if folder == f"../VGG8_SVM/data/dataset/{data_folder}/flipped_image_features.joblib":
+                continue
+
             ft = np.vstack((ft, result))
         folder = f"../VGG8_SVM/data/dataset/{data_folder}/process_image_features.joblib"
         folder_list = folder.split("/")

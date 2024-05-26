@@ -102,7 +102,7 @@ def process_data(source_folder, destination_folder):
 
             folder_index += 1
 
-    process = raw_list + negative_list + resize_list + rotate_list + flip_list
+    process = raw_list + negative_list + resize_list + rotate_list
     print(len(label))
     print(len(raw_list))
     print(len(negative_list))

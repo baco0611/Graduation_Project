@@ -40,12 +40,6 @@ for i in range(15000):
         diff += 1
 print("Error between rot and process:", diff)
 
-diff = 0
-for i in range(15000):
-    if not (np.array_equal(flipped_description[i], process_description[i + 15000 * 4])):
-        diff += 1
-print("Error between flip and process:", diff)
-
 
 print("\n\n\n4096dims data testing")
 raw_description = joblib.load("./data/dataset/4096dims_data/raw_image_features.joblib")
@@ -85,9 +79,3 @@ for i in range(15000):
     if not (np.array_equal(rotated_description[i], process_description[i + 15000 * 3])):
         diff += 1
 print("Error between rot and process:", diff)
-
-diff = 0
-for i in range(15000):
-    if not (np.array_equal(flipped_description[i], process_description[i + 15000 * 4])):
-        diff += 1
-print("Error between flip and process:", diff)

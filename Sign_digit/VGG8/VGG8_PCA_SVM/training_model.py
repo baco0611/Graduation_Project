@@ -79,7 +79,7 @@ def evaluate_and_confusion_matrix(model, test_x, test_y, model_name):
 
 labels = joblib.load("../.././dataset/data/label.joblib")
 if data_num == 5:
-    labels = labels * 5
+    labels = labels * 4
 
 for feature_dims in range (200, 600, 100):
     model_name = f"{date}_SVM_{cnn_dims}_{feature_dims}"

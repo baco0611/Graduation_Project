@@ -37,11 +37,6 @@ def test_data(cnn_dims, feature_dims):
             diff += 1
     print("Error between rot and process:", diff)
 
-    diff = 0
-    for i in range(15000):
-        if not (np.array_equal(flipped_description[i], process_description[i + 15000 * 4])):
-            diff += 1
-    print("Error between flip and process:", diff)
 
 for x in [1024, 4096]:
     for y in range(200, 600, 100):

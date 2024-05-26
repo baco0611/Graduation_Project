@@ -38,9 +38,3 @@ for i in range(3000):
     if not (np.array_equal(rotated_description[i], process_description[i + 3000 * 3])):
         diff += 1
 print("Error between rot and process:", diff)
-
-diff = 0
-for i in range(3000):
-    if not (np.array_equal(flipped_description[i], process_description[i + 3000 * 4])):
-        diff += 1
-print("Error between flip and process:", diff)

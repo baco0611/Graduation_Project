@@ -70,7 +70,7 @@ folders = [
 data = joblib.load(folders[data_num])
 labels = joblib.load("../.././dataset/data/label.joblib")
 if data_num == 5:
-    labels = labels * 5
+    labels = labels * 4
 
 print(len(data), len(labels))
 

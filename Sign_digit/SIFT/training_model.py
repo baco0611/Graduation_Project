@@ -17,7 +17,7 @@ print("Loading data ...")
 description = joblib.load(f'./data/dataset/{name}_description.joblib')
 codebook = joblib.load(f"./data/model/{date}_{name}_{size}_codebook.joblib")
 labels = joblib.load("../dataset/data/label.joblib")
-process_labels = labels * 5
+process_labels = labels * 4
 labels = process_labels
 
 print("Số lượng mẫu", len(description))
